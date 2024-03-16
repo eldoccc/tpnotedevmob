@@ -60,8 +60,8 @@ function CarScreen({ navigation, route }: CarScreenProps) {
             <Text style={{ fontSize: 20, fontWeight:"600" }}>Vendeur :</Text>
             <View style={{flexDirection: "row", alignItems:"center"}}>
             <Avatar.Image source={{ uri: car?.avatar }} size={60} theme={
-                { colors: { primary: '#FFF' } }
-            } style={{borderStyle: "solid", borderColor: "#03FB23"}} />
+                { colors: { primary: '#FFF',accent: '#43A047'  }}
+            } style={{ borderWidth: 2, borderColor: '#43A047' }}/>
                <View style={{flexDirection: "column", justifyContent: "center", marginLeft:5}}>
             <Text style={{ fontSize: 16}}>{car?.saler}</Text>
                   <View style={{flexDirection: "row", gap: 12}}>
