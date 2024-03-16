@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 import Car from "../models/Car";
 import Colors from "../constants/Colors";
 import {IconButton, MD3Colors} from "react-native-paper";
 import {addFavori, removeFavori} from "../reducers/favoriReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {GlobalStoreProps} from "../store/globalStore";
 
 type ListItemCarParams = {
   car: Car
@@ -15,6 +16,16 @@ type ListItemCarParams = {
 const ListItemCar = ({ car, onClick }: ListItemCarParams) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useDispatch();
+
+  const favoris = useSelector<GlobalStoreProps, Array<Car>>((state) => state.favori);
+
+  useEffect(() => {
+    if (favoris.find(favoriteCar => favoriteCar.id === car.id)) {
+      setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
+    }
+  }, [favoris, car]);
 
   const addFavorites = (car: Car) => {
     if(isFavorite){
